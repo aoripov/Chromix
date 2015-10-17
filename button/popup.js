@@ -121,11 +121,14 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function changeHandler(){
+    //console.log(3);
    //Do Something...maybe another function showAlert(), for instance
-   if(toggler.checked){
+   if(toggle.checked){
+    console.log(1)
       document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
    }
    else{
+      console.log(2)
       document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
    }
 }
