@@ -95,6 +95,7 @@ function renderStatus(statusText) {
 */
 
 document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
   document.querySelector("#toggle").addEventListener('change', changeHandler);
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
