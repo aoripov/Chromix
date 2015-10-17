@@ -95,7 +95,7 @@ function renderStatus(statusText) {
 */
 
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector("#myonffswitch").addEventListener('change', changeHandler);
+  document.querySelector("#toggle").addEventListener('change', changeHandler);
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
     //renderStatus('Performing Google Image search for ' + url);
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function changeHandler(){
    //Do Something...maybe another function showAlert(), for instance
-   if(myonffswitch.checked){
+   if(toggler.checked){
       document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
    }
    else{
@@ -130,17 +130,6 @@ function changeHandler(){
    }
 }
 
-document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
-
-document.addEventListener('DOMContentLoaded', function(){
-  var x = getElementById("myonffswitch").checked;
-  if (x) {
-    document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
-  } else {
-    document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
-  }
-
-});
 
 function hello() {
   chrome.tabs.executeScript({
