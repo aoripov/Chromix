@@ -1,19 +1,31 @@
 {
   "manifest_version": 2,
 
-  "name": "Chromix",
-  "description": "This extension got me a Bloomberg internship.",
+  "name": "Getting started example",
+  "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
+  "options_page": "options.html",
 
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
   "permissions": [
+    "tabs",
+    "webRequest",
+    "management",
+    "webNavigation",
+    "http://*/*",
+    "https://*/*",
     "activeTab",
+    "webRequestBlocking",
     "https://ajax.googleapis.com/"
   ],
-  "content_scripts": [
+  "background": {
+    "scripts": ["eventPage.js"],
+    "persistent": true
+  },
+    "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "js": ["jquery.min.js", "bootstrap.min.js", "dialog.js"]
