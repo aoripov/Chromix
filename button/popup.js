@@ -88,14 +88,17 @@ function getImageUrl(searchTerm, callback, errorCallback) {
   x.send();
 }
 
+/*
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
 }
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector("#myonffswitch").addEventListener('change', changeHandler);
   getCurrentTabUrl(function(url) {
     // Put the image URL in Google search.
-    renderStatus('Performing Google Image search for ' + url);
+    //renderStatus('Performing Google Image search for ' + url);
 
     getImageUrl(url, function(imageUrl, width, height) {
 
@@ -116,3 +119,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+function changeHandler(){
+   //Do Something...maybe another function showAlert(), for instance
+   if(myonffswitch.checked){
+      document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
+   }
+   else{
+      document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
+   }
+}
+
+document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
+
+document.addEventListener('DOMContentLoaded', function(){
+  var x = getElementById("myonffswitch").checked;
+  if (x) {
+    document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
+  } else {
+    document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
+  }
+
+});
+
+function hello() {
+  chrome.tabs.executeScript({
+    //file: 'alert.js'
+  }); 
+}
+
+document.getElementById('buttons').addEventListener('click', hello);
