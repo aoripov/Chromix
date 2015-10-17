@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Chromix",
+  "description": "This extension got me a Bloomberg internship.",
   "version": "1.0",
 
   "browser_action": {
@@ -12,5 +12,11 @@
   "permissions": [
     "activeTab",
     "https://ajax.googleapis.com/"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["jquery.min.js", "bootstrap.min.js", "dialog.js"]
+    }
   ]
 }
