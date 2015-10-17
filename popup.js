@@ -88,13 +88,31 @@ function getImageUrl(searchTerm, callback, errorCallback) {
   x.send();
 }
 
-/*
-function renderStatus(statusText) {
-  document.getElementById('status').textContent = statusText;
+
+
+function saveState() {
+  var checkbox = document.querySelector('input[type=checkbox');
+  if(checkbox.value != null) {
+      console.log(checkbox.value);
+  localStorage.setItem(checkbox.value, checkbox.checked);
+  }
+
+
 }
-*/
+
+
+// window.onload = function load() {
+//   if (checkbox.value != null) {
+//     checkbox.checked = localStorage.getItem(checkbox.value) === 'true' ? true:false;
+//   }
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
+  var checkbox = document.querySelector('input[type=checkbox');
+  if (checkbox.value != null) {
+    console.log(1);
+    checkbox.checked = localStorage.getItem(checkbox.value) === 'true' ? true:false;
+  }
   document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
   document.querySelector("#toggle").addEventListener('change', changeHandler);
   getCurrentTabUrl(function(url) {
@@ -104,12 +122,22 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function changeHandler(){
+  var checkbox = document.querySelector('input[type=checkbox');
+
     //console.log(3);
    //Do Something...maybe another function showAlert(), for instance
    if(toggle.checked){
+
+console.log(checkbox.value);
+console.log(checkbox.checked);
+      saveState();
       document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
    }
    else{
+      saveState();
+
+console.log(checkbox.value);
+console.log(checkbox.checked);
       document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
    }
 }
