@@ -22,3 +22,37 @@ if(regExp.test(document.URL)) { //url matches
 } else {
 	// alert("url doesn't match!");
 }
+
+/**
+ * @param {string} categoryId Category id to get random question
+ * @return {Object} Answer with question
+ */
+function getRandomQuestion(categoryId) {
+  var url = "http://jservice.io";
+  var apiURL = "/api/category"
+  var out = {}
+  var results = {};
+  var request = new XMLHttpRequest();
+  url = url + apiURL + "?id=" + categoryId;
+  request.open('GET', url, false);
+  request.send(null);
+  if(request.status == 200) {
+     results = JSON.parse(request.responseText).clues;
+  }
+  var rand = Math.floor((Math.random() * results.length));
+  return results[rand];
+}
+
+/**
+ * @param {string} textFieldId ID of text field with user's answer
+ * @param {Object} clue JS object that represents question
+ * @return {bool} Return true if answers matches
+ */
+function checkAnswer(textFieldId, clue) {
+  var userAnswer = document.getElementById(textFieldId).value.toLowerCase();
+  var out = false;
+  var answer = clue['answer'].toLowerCase();
+  if (answer.indexOf(userAnswer) != -1)
+    out = true;
+  return out;
+}
