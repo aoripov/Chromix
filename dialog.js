@@ -49,11 +49,22 @@ function checkWebsite(){
   }
 };
 
-//if( $("#toggle").checked) {  //put in here actual code => fetch from store
-  checkWebsite();
-//} else {
-  console.log("button disabled");
-//}
+var toggled;
+console.log("hello134411234");
+chrome.storage.local.get(function(item){
+  console.log(item); 
+  toggled = item.toggled;
+
+  if( toggled ) {  //check if extension turned on
+    checkWebsite();
+  } else {
+    console.log("button disabled");
+}
+
+});// toggled = item["toggled"];});
+
+
+
 
 /**
  * @param {string} categoryId Category id to get random question

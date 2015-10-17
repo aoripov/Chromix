@@ -94,7 +94,8 @@ function saveState() {
   var checkbox = document.querySelector('input[type=checkbox');
   if(checkbox.value != null) {
       console.log(checkbox.value);
-  localStorage.setItem(checkbox.value, checkbox.checked);
+  //localStorage.setItem(checkbox.value, checkbox.checked);
+  chrome.storage.local.set({"toggled": checkbox.checked});
   }
 
 
@@ -108,10 +109,12 @@ function saveState() {
 // }
 
 document.addEventListener('DOMContentLoaded', function() {
-  var checkbox = document.querySelector('input[type=checkbox');
+  var checkbox = document.querySelector('input[type=checkbox]');
   if (checkbox.value != null) {
     console.log(1);
-    checkbox.checked = localStorage.getItem(checkbox.value) === 'true' ? true:false;
+    //checkbox.checked = localStorage.getItem(checkbox.value) === 'true' ? true:false;
+
+    chrome.storage.local.get('toggled', function(item){checkbox.checked = item.toggled;});
   }
   document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
   document.querySelector("#toggle").addEventListener('change', changeHandler);

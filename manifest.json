@@ -15,6 +15,7 @@
     "webRequest",
     "management",
     "webNavigation",
+    "storage",
     "http://*/*",
     "https://*/*",
     "activeTab",
