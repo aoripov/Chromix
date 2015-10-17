@@ -1,24 +1,19 @@
-<!DOCTYPE html>
 <html>
-<head><title>My Test Extension Options</title></head>
-<body>
-
-Favorite color:
-<select id="color">
- <option value="red">red</option>
- <option value="green">green</option>
- <option value="blue">blue</option>
- <option value="yellow">yellow</option>
-</select>
-
-<label>
-  <input type="checkbox" id="like">
-  I like colors.
-</label>
-
-<div id="status"></div>
-<button id="save">Save</button>
-
-<script src="options.js"></script>
+<head>
+    <title>Options for URl chooser </title>
+    <script type="text/javascript" src="options.js"></script>
+</head>
+<body onload="loadOptions()">
+    <h1>Distracting URL</h1>
+    <select id="urls">
+        <option value="www.facebook.com">facebook</option>
+        <option value="www.twitter.com">twitter</option>
+        <option value="www.exchange.jacobs-university.de">exchange.jacobs-university.de </option>
+        <option value="www.youtube.com">youtube</option>
+    </select>
+    <br />
+    <button onclick="saveOptions()">Save</button>
+    <br />
+    <button onclick="eraseOptions()">Restore default</button>
 </body>
 </html>

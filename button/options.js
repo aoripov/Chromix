@@ -1,32 +1,31 @@
-// Saves options to chrome.storage
-function save_options() {
-  var color = document.getElementById('color').value;
-  var likesColor = document.getElementById('like').checked;
-  chrome.storage.sync.set({
-    favoriteColor: color,
-    likesColor: likesColor
-  }, function() {
-    // Update status to let user know options were saved.
-    var status = document.getElementById('status');
-    status.textContent = 'Options saved.';
-    setTimeout(function() {
-      status.textContent = '';
-    }, 750);
-  });
+var defaultURL = "www.facebook.com";
+function loadOptions() {
+    if (typeof(Storage) !== "undefined") {
+      document.getElementById("urls").innerHTML = localStorage.getItem("urls");
+    } else {
+      document.getElementById("urls").innerHTML = "Sorry, your browser does not support Web Storage...";
+    }
+    //var currentURl = localStorage["urls"];
+    // valid colors are red, blue, green and yellow
+    if (currentURL == undefined || (currentURL != "www.facebook.com" && currentURL != "www.exchange.jacobs-university.de" && currentURL != "www.twitter.com" && currentURL != "www.youtube.com")) {
+        currentURL = defaultURL;
+    }
+    var select = document.getElementById("urls");
+    for (var i = 0; i < select.children.length; i++) {
+        var child = select.children[i];
+            if (child.value == currentURL) {
+            child.selected = "true";
+            break;
+        }
+    }
+}
+function saveOptions() {
+    var select = document.getElementById("urls");
+    var URL = select.children[select.selectedIndex].value;
+    localStorage.setItem("urls", URL);
+}
+function eraseOptions() {
+    localStorage.removeItem("urls");
+    location.reload();
 }
 
-// Restores select box and checkbox state using the preferences
-// stored in chrome.storage.
-function restore_options() {
-  // Use default value color = 'red' and likesColor = true.
-  chrome.storage.sync.get({
-    favoriteColor: 'red',
-    likesColor: true
-  }, function(items) {
-    document.getElementById('color').value = items.favoriteColor;
-    document.getElementById('like').checked = items.likesColor;
-  });
-}
-document.addEventListener('DOMContentLoaded', restore_options);
-document.getElementById('save').addEventListener('click',
-    save_options);

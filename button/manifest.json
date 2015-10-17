@@ -4,18 +4,24 @@
   "name": "Getting started example",
   "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
+  "options_page": "options.html",
 
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
   "permissions": [
+    "tabs",
+    "webRequest",
+    "management",
+    "webNavigation",
+    "http://*/*",
+    "https://*/*",
     "activeTab",
-    "https://ajax.googleapis.com/",
     "webRequestBlocking"
   ],
   "background": {
     "scripts": ["eventPage.js"],
-    "persistent": false
+    "persistent": true
   }
 }
