@@ -18,26 +18,52 @@ function createDialog() {
     .appendTo("body");
 
   var question = getRandomQuestion(6115);
-  var questionForm = $("<form role='form' id='questionForm'>");
+  var questionForm = $("<form role='form' class='form' id='questionForm'>");
   questionForm.appendTo(div);
     questionForm.css({
       "all": "initial",
       "font-size": "40px"
    });
 
+    questionForm.submit(function(ev){
+      ev.preventDefault(); //keep form from submitting
+
+      var tmp = document.createElement("div");
+      tmp.innerHTML = question.answer;
+      var correctAnswer = tmp.textContent || tmp.innerHTML || undefined;
+
+      if(correctAnswer == $("#answer").val()) {
+        console.log("correct answer!");
+        chrome.storage.local.set({"toggled": false});
+        div.remove();
+      } else {
+        console.log("wrong answer!");
+      }
+
+    });
+
   var questionGroup = $("<div>")
     .addClass("form-group")
     .appendTo(questionForm);
 
   var questionLabel = $("<label for='answer' id='question'>");
-
   questionLabel.html(question.question);
   questionLabel.appendTo(questionGroup);
 
+  var answer = $("<input id='answer' >");
+  answer.attr("answer", question.answer);
+  answer.appendTo(questionGroup);
 
 
   questionForm.appendTo(div);
+
+  $("<button type='submit'>").appendTo(questionGroup);
+
+  console.log(question.answer);
+
 }
+
+
 
 function checkWebsite(){
   chrome.storage.local.get(function(options) {

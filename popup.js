@@ -91,7 +91,7 @@ function getImageUrl(searchTerm, callback, errorCallback) {
 
 
 function saveState() {
-  var checkbox = document.querySelector('input[type=checkbox');
+  var checkbox = document.querySelector('input[type=checkbox]');
   if(checkbox.value != null) {
       console.log(checkbox.value);
   //localStorage.setItem(checkbox.value, checkbox.checked);
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function changeHandler(){
-  var checkbox = document.querySelector('input[type=checkbox');
+  var checkbox = document.querySelector('input[type=checkbox]');
 
     //console.log(3);
    //Do Something...maybe another function showAlert(), for instance
