@@ -97,8 +97,6 @@ function saveState() {
   //localStorage.setItem(checkbox.value, checkbox.checked);
   chrome.storage.local.set({"toggled": checkbox.checked});
   }
-
-
 }
 
 
@@ -109,13 +107,26 @@ function saveState() {
 // }
 
 document.addEventListener('DOMContentLoaded', function() {
+    
+ 
   var checkbox = document.querySelector('input[type=checkbox]');
-  if (checkbox.value != null) {
-    console.log(1);
-    //checkbox.checked = localStorage.getItem(checkbox.value) === 'true' ? true:false;
 
-    chrome.storage.local.get('toggled', function(item){checkbox.checked = item.toggled;});
-  }
+  // if (checkbox.value != null) {
+  //   console.log(1);
+    chrome.storage.local.get('toggled', function(item){
+      if(checkbox.checkbox != null) {
+        checkbox.checked = item.toggled;
+      } else {
+        checkbox.checkbox = false;
+      }
+      
+
+    });
+  //    // var t = document.getElementById("toggle");
+  //    //  t.disabled = true;
+  // } else {
+  //   chrome.storage.local.set({"toggled": false});
+  // }
   document.getElementById("toggler").innerHTML = "Toggle the button to study in peace!";
   document.querySelector("#toggle").addEventListener('change', changeHandler);
   getCurrentTabUrl(function(url) {
@@ -137,7 +148,6 @@ console.log(checkbox.checked);
       document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
       var t = document.getElementById("toggle");
       t.disabled = true;
-      
    }
    else{
       saveState();
