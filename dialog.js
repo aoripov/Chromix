@@ -18,11 +18,11 @@ function createDialog() {
     })
     .appendTo("body");
 
-  var question = getRandomQuestion(6115);
+  var question = getRandomQuestion(11877);
   var questionForm = $("<form role='form' class='form' id='questionForm'>");
   questionForm.appendTo(div);
     questionForm.css({
-      "font-size": "40px"
+      "font-size": "20px",
    });
 
   $("<link type='stylesheet' href='bootstrap.min.js'>");
@@ -31,7 +31,7 @@ function createDialog() {
       ev.preventDefault(); //keep form from submitting
 
       var tmp = document.createElement("div");
-      tmp.innerHTML = question.answer;
+      tmp.innerHTML = "<center>" + question.answer + "</center>";
       var correctAnswer = tmp.textContent || tmp.innerHTML || undefined;
 
       if(correctAnswer == $("#answer").val()) {
@@ -41,6 +41,7 @@ function createDialog() {
         chrome.storage.local.set({"toggled": false});
         div.remove();
       } else {
+        createDialog();
         console.log("wrong answer!");
       }
 
@@ -61,7 +62,7 @@ function createDialog() {
 
   questionForm.appendTo(div);
 
-  $("<button type='submit'>").appendTo(questionGroup);
+  $("<button type='submit'>Submit</button>").appendTo(questionGroup);
 
   console.log(question.answer);
 
