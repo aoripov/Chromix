@@ -135,6 +135,9 @@ console.log(checkbox.value);
 console.log(checkbox.checked);
       saveState();
       document.getElementById("toggler").innerHTML = "Done with studying? Click below for a quiz ;)";
+      var t = document.getElementById("toggle");
+      t.disabled = true;
+      
    }
    else{
       saveState();

@@ -36,6 +36,8 @@ function createDialog() {
 
       if(correctAnswer == $("#answer").val()) {
         console.log("correct answer!");
+        var t = document.getElementById("toggle");
+        t.disabled = false;
         chrome.storage.local.set({"toggled": false});
         div.remove();
       } else {
