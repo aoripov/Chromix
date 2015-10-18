@@ -52,8 +52,11 @@ function moveOptions(theSelFrom, theSelTo)
 }
 
 function loadOptions() {
-    var e = document.getElementById("urls");
-    var strUser = e.options[e.selectedIndex].text;
+    var textAreaId = "blockedURLs";
+    var strUrl = getBlockedURLs();
+    document.getElementById(textAreaId).value = strUrl.join(",");
+    // var e = document.getElementById("urls");
+    // var strUser = e.options[e.selectedIndex].text;
     /*if (typeof(Storage) !== "undefined") {
       document.getElementById('urls').innerHTML = localStorage.getItem('urls');
     } else {
@@ -78,10 +81,37 @@ function saveOptions() {
     var URL = select.children[select.selectedIndex].value;
     localStorage.setItem('urls', URL);
 }
+
 function eraseOptions() {
     localStorage.removeItem('urls');
     location.reload();
 }
 
+function getBlockedURLs() {
+    var options = {};
+    chrome.storage.local.get(function(items) {
+        options = items;
+    });
+    var out = [];
+    if ((typeof options['blockedURLs']) != "undefined")  {
+        out = options['blockedURLs'];
+    }
+    return out;
+}
+
+function setBlockedURLs(urls) {
+    var options = {};
+    options['blockedURLs'] = urls;
+    chrome.storage.local.set({'blockedURLs':urls});
+}
+
+function saveBlockedURLs() {
+    var textAreaId = "blockedURLs";
+    var urls = document.getElementById(textAreaId).value.split(',');
+    setBlockedURLs(urls);
+}
+
+window.addEventListener('load', loadOptions);
+window.addEventListener('click', saveBlockedURLs);
 
 
