@@ -6,7 +6,8 @@ function createDialog() {
   //create div to block website content
   var div = $("<div>")
     .addClass("focus")
-    .css({"width": "90%",
+    .css({"all": "initial",
+          "width": "90%",
           "height": "90%",
           "background": 'rgb(255,255,255)',
           "left": "5%",
@@ -21,9 +22,10 @@ function createDialog() {
   var questionForm = $("<form role='form' class='form' id='questionForm'>");
   questionForm.appendTo(div);
     questionForm.css({
-      "all": "initial",
       "font-size": "40px"
    });
+
+  $("<link type='stylesheet' href='bootstrap.min.js'>");
 
     questionForm.submit(function(ev){
       ev.preventDefault(); //keep form from submitting
