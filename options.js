@@ -1,11 +1,11 @@
-var defaultURL = "www.facebook.com";
-var NS4 = (navigator.appName == "Netscape" && parseInt(navigator.appVersion) < 5);
+var list = document.getElementById('demo');
 
-function addOption(theSel, theText, theValue)
-{
-  var newOpt = new Option(theText, theValue);
-  var selLength = theSel.length;
-  theSel.options[selLength] = newOpt;
+function changeText2() {
+    var firstname = document.getElementById('firstname').value;
+    document.getElementById('boldStuff2').innerHTML = firstname;
+    var entry = document.createElement('li');
+    entry.appendChild(document.createTextNode(firstname));
+    list.appendChild(entry);
 }
 
 function deleteOption(theSel, theIndex)
@@ -113,5 +113,3 @@ function saveBlockedURLs() {
 
 window.addEventListener('load', loadOptions);
 window.addEventListener('click', saveBlockedURLs);
-
-
