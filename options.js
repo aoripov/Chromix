@@ -78,16 +78,6 @@ function loadOptions() {
         }
     }*/
 }
-function saveOptions() {
-    var select = document.getElementById('urls');
-    var URL = select.children[select.selectedIndex].value;
-    localStorage.setItem('urls', URL);
-}
-
-function eraseOptions() {
-    localStorage.removeItem('urls');
-    location.reload();
-}
 
 function getBlockedURLs(callback) {
     var options = {};
@@ -101,7 +91,7 @@ function getBlockedURLs(callback) {
           out = options['blockedURLs'];
         }
         callback(out);
-    }, 100)
+    }, 100);
 }
 
 function setBlockedURLs(urls) {

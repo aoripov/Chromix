@@ -40,17 +40,22 @@ function createDialog() {
 }
 
 function checkWebsite(){
-  var regExp = new RegExp("engadget");
-
-  if(regExp.test(document.URL)) { //url matches
-
-  	createDialog();
-
-  }
+  chrome.storage.local.get(function(options) {
+    var urls = [];
+    if ((typeof options['blockedURLs']) != "undefined")  {
+      urls = options['blockedURLs'];
+    }
+    $.each(urls, function(index, url) {  
+      var flag = (document.URL.indexOf(url.replace(' ', '')) != -1);
+      if (flag) {
+        createDialog();
+      }
+      return !flag;
+    });
+  });
 };
 
 var toggled;
-console.log("hello134411234");
 chrome.storage.local.get(function(item){
   console.log(item); 
   toggled = item.toggled;
