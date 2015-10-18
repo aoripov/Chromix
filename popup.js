@@ -110,18 +110,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
  
   var checkbox = document.querySelector('input[type=checkbox]');
-
+  
   // if (checkbox.value != null) {
   //   console.log(1);
-    chrome.storage.local.get('toggled', function(item){
-      if(checkbox.checkbox != null) {
-        checkbox.checked = item.toggled;
-      } else {
-        checkbox.checkbox = false;
-      }
-      
-
-    });
+    chrome.storage.local.get('toggled', function(item){checkbox.checked = item.toggled;});
   //    // var t = document.getElementById("toggle");
   //    //  t.disabled = true;
   // } else {
